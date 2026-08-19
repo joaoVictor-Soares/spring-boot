@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Produtos</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <h1>Produtos Cadastrados</h1>
+
+    <!-- Mensagem de sucesso -->
+    <div th:if="${message}" style="margin-bottom: 15px; color: green; font-weight: bold;">
+        <p th:text="${message}"></p>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.name}"></td>
+                <td th:text="${#numbers.formatCurrency(product.price)}"></td>
+                <td class="descricao" th:text="${product.description} ?: '---'"></td>
+                <td>
+                    <div class="btn-group">
+                        <a th:href="@{/products/edit/{id}(id=${product.id})}" class="btn btn-primary">Editar</a>
+                        <a th:href="@{/products/delete/{id}(id=${product.id})}" class="btn btn-danger"
+                            onclick="return confirm('Tem certeza?')">Excluir</a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="margin-top: 20px;">
+        <a th:href="@{/products/new}" class="btn btn-success">+ Novo Produto</a>
+    </div>
+</body>
+
+</html>
