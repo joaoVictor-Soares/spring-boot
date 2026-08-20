@@ -22,18 +22,22 @@ public class Product {
     
     private String description;
 
-    public Product() {
-    }
+    @NotBlank(message = "A categoria é obrigatória")
+    private String category;
 
-    public Product(Long id, String name, Double price, String description) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.description = description;
+    public Product() {
     }
 
     public Long getId() {
         return id;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public void setId(Long id) {
