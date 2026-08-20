@@ -31,6 +31,7 @@
         <div class="form-group">
             <label for="description">Categoria:</label>
             <textarea id="description" th:field="*{category}" placeholder="Categoria do produto"></textarea>
+            <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}" class="error"></span>
         </div>
 
         <div class="form-group">
